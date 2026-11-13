@@ -29,6 +29,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Transform playerCamera;
 
+    [SerializeField]
+    private Animator animator;
+
     private void OnEnable()
     {
         InputActions.FindActionMap("Player").Enable();
@@ -54,12 +57,14 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void PlayerMoveAndRotate()
-    { 
+    {
         Vector3 playerDirection = new Vector3(playerMoveAmount.x,0f, playerMoveAmount.y).normalized;
         Vector3 verticalMove = new Vector3(0f, verticalVelocity, 0f) * Time.deltaTime;
 
         if (playerDirection.magnitude >= 0.1f)
         {
+            animator.SetBool("Run", true);
+            animator.SetBool("Idle", false);
             float targetAngle = Mathf.Atan2(playerDirection.x, playerDirection.z) * Mathf.Rad2Deg + playerCamera.eulerAngles.y;
             float smoothTargetAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothingVelocity, playerRotateDampening);
 
@@ -70,6 +75,8 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             playerCharacterController.Move(verticalMove);
+            animator.SetBool("Run", false);
+            animator.SetBool("Idle", true);
         }
     }
 

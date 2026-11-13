@@ -23,6 +23,9 @@ public class Sword_attack : MonoBehaviour
 
     private bool attacking = false;
 
+    [SerializeField]
+    private Animator animator;
+
     private void OnEnable()
     {
         InputActions.FindActionMap("Player").Enable();
@@ -53,7 +56,9 @@ public class Sword_attack : MonoBehaviour
 
         if (attacking == true && distanceSwung < swingLength)
         {
-            
+            animator.SetBool("Hit", true);
+            animator.SetBool("Run", false);
+            animator.SetBool("Idle", false);
             angle = startAngle + distanceSwung;
 
             //This makes it a nice circle
@@ -73,6 +78,7 @@ public class Sword_attack : MonoBehaviour
         {
             attacking = false;
             swordMesh.enabled = false;
+            
         }
 
     }

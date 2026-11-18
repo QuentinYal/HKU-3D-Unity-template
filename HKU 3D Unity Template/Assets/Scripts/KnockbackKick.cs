@@ -1,4 +1,4 @@
-using Mono.Cecil.Cil;
+
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -20,6 +20,9 @@ public class KnockbackKick : MonoBehaviour
     [SerializeField]
     private NavMeshAgent[] enemyNavMeshAgent;
 
+    [SerializeField]
+    private Transform player;
+
     private void Update()
     {
         var state = playerCharacter.GetState();
@@ -38,9 +41,9 @@ public class KnockbackKick : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
+            StartCoroutine(NavMeshAgentHandler());
             effectManager.Stop(0.1f);
             KnockBack();
-            StartCoroutine(NavMeshAgentHandler());
         }
     }
 
@@ -53,7 +56,11 @@ public class KnockbackKick : MonoBehaviour
             Rigidbody rb = nearBy.GetComponent<Rigidbody>();
             if(rb != null)
             {
-                rb.AddExplosionForce(kickForce, transform.position, radius);
+                //rb.AddExplosionForce(kickForce, transform.position, radius);
+                Vector3 directionNormalized = Vector3.Normalize(player.position - transform.position);
+                Vector3 direction = new Vector3(directionNormalized.x, 1f, directionNormalized.z);
+                Debug.Log(direction);
+                rb.linearVelocity = -direction * kickForce;
             }
         }
     }

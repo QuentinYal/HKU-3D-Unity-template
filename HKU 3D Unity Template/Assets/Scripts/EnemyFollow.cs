@@ -11,6 +11,7 @@ public class EnemyFollow : MonoBehaviour
 
     void Update()
     {
+        if (!enemy.enabled || !enemy.isOnNavMesh) return;
         enemy.SetDestination(player.position);
     }
 

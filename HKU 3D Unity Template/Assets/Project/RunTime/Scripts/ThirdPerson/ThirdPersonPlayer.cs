@@ -8,6 +8,9 @@ public class ThirdPersonPlayer : MonoBehaviour
     [Space]
     [SerializeField] private ThirdPersonCameraSpring cameraSpring;
     [SerializeField] private ThirdPersonCameraLean cameraLean;
+    [Space]
+    [SerializeField] private Animator animator;
+    [Space]
 
     public PlayerInputActions _inputActions;
 
@@ -48,6 +51,80 @@ public class ThirdPersonPlayer : MonoBehaviour
                         : CrouchInput.None
         };
         playerCharacter.UpdateInput(characterInput);
+
+        bool isMoving = characterInput.Move.sqrMagnitude > 0.01f;
+
+        var state = playerCharacter.GetState();
+        bool isCrouching = state.Stance == Stance.Crouch;
+
+        bool isSliding = state.Stance == Stance.Slide;
+
+        animator.SetBool("Idle", !isMoving);
+
+        if (isMoving)
+        {
+            animator.SetBool("Idle", false);
+            animator.SetBool("Run", true);
+        }
+
+        if (!isMoving)
+        {
+            animator.SetBool("Idle", true);
+            animator.SetBool("Run", false);
+        }
+
+        if (isCrouching)
+        {
+            animator.SetBool("Idle", false);
+            animator.SetBool("Run", false);
+            animator.SetBool("CrouchIdle", true);
+        }
+
+        if(isCrouching && isMoving)
+        {
+            animator.SetBool("CrouchIdle", false);
+            animator.SetBool("CrouchWalk", true);
+        }
+
+        if (!isCrouching && !isMoving)
+        {
+            animator.SetBool("CrouchIdle", false);
+            animator.SetBool("CrouchWalk", false);
+            animator.SetBool("Idle", true);
+        }
+
+        if (isCrouching && !isMoving)
+        {
+            animator.SetBool("CrouchIdle", true);
+            animator.SetBool("CrouchWalk", false);
+        }
+
+        if (!isCrouching && isMoving)
+        {
+            animator.SetBool("Run", true);
+            animator.SetBool("CrouchWalk", false);
+            animator.SetBool("Slide", false);
+        }
+
+        if (isSliding && isMoving)
+        {
+            animator.SetBool("Slide", true);
+            animator.SetBool("Run", false);
+        }
+
+        if (!isSliding && isCrouching && !isMoving)
+        {
+            animator.SetBool("Run",false);
+            animator.SetBool("Slide", false);
+            animator.SetBool("CrouchIdle", true);
+        }
+
+        if (!isSliding && isCrouching && isMoving)
+        {
+            animator.SetBool("Run", false);
+            animator.SetBool("Slide", false);
+            animator.SetBool("CrouchWalk", true);
+        }
     }
 
     private void LateUpdate()

@@ -131,6 +131,56 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""initialStateCheck"": false,
                     ""priority"": 0
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""d558588d-9fc2-406f-97b2-170c80972d30"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
+                },
+                {
+                    ""name"": ""HoldAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""242a886a-df61-4ee8-8de8-9dd6a722e4f4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
+                },
+                {
+                    ""name"": ""Emote1"",
+                    ""type"": ""Button"",
+                    ""id"": ""ce55aef8-db41-4b77-907d-d88a4c96df9b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
+                },
+                {
+                    ""name"": ""Emote2"",
+                    ""type"": ""Button"",
+                    ""id"": ""301d0b85-4e1f-478b-8dab-7084c4680ac0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
+                },
+                {
+                    ""name"": ""Emote3"",
+                    ""type"": ""Button"",
+                    ""id"": ""8c371808-74dc-4208-8d29-1df4cf2ebfc1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
                 }
             ],
             ""bindings"": [
@@ -265,6 +315,83 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Crouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3881103c-19eb-475b-9db0-8ed3525aa0a7"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b31dcf94-b3ce-405a-9d1b-f2a83c083ef5"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1da5be9b-aaad-4c5a-b8d8-2a134aafb1ef"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HoldAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1c857685-3c07-4926-b6cb-6d5250be82ec"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HoldAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0e3c4d48-67d2-4df2-8ca2-399bf6f2dac4"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Emote1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3aa7fb06-8478-41f2-927c-ed5fafb742eb"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Emote2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""740b57c8-9667-453e-81e5-fc83481c811f"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Emote3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -277,6 +404,11 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
         m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
         m_Gameplay_Crouch = m_Gameplay.FindAction("Crouch", throwIfNotFound: true);
+        m_Gameplay_Attack = m_Gameplay.FindAction("Attack", throwIfNotFound: true);
+        m_Gameplay_HoldAttack = m_Gameplay.FindAction("HoldAttack", throwIfNotFound: true);
+        m_Gameplay_Emote1 = m_Gameplay.FindAction("Emote1", throwIfNotFound: true);
+        m_Gameplay_Emote2 = m_Gameplay.FindAction("Emote2", throwIfNotFound: true);
+        m_Gameplay_Emote3 = m_Gameplay.FindAction("Emote3", throwIfNotFound: true);
     }
 
     ~@PlayerInputActions()
@@ -361,6 +493,11 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Move;
     private readonly InputAction m_Gameplay_Jump;
     private readonly InputAction m_Gameplay_Crouch;
+    private readonly InputAction m_Gameplay_Attack;
+    private readonly InputAction m_Gameplay_HoldAttack;
+    private readonly InputAction m_Gameplay_Emote1;
+    private readonly InputAction m_Gameplay_Emote2;
+    private readonly InputAction m_Gameplay_Emote3;
     /// <summary>
     /// Provides access to input actions defined in input action map "Gameplay".
     /// </summary>
@@ -388,6 +525,26 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Gameplay/Crouch".
         /// </summary>
         public InputAction @Crouch => m_Wrapper.m_Gameplay_Crouch;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/Attack".
+        /// </summary>
+        public InputAction @Attack => m_Wrapper.m_Gameplay_Attack;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/HoldAttack".
+        /// </summary>
+        public InputAction @HoldAttack => m_Wrapper.m_Gameplay_HoldAttack;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/Emote1".
+        /// </summary>
+        public InputAction @Emote1 => m_Wrapper.m_Gameplay_Emote1;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/Emote2".
+        /// </summary>
+        public InputAction @Emote2 => m_Wrapper.m_Gameplay_Emote2;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/Emote3".
+        /// </summary>
+        public InputAction @Emote3 => m_Wrapper.m_Gameplay_Emote3;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -426,6 +583,21 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Crouch.started += instance.OnCrouch;
             @Crouch.performed += instance.OnCrouch;
             @Crouch.canceled += instance.OnCrouch;
+            @Attack.started += instance.OnAttack;
+            @Attack.performed += instance.OnAttack;
+            @Attack.canceled += instance.OnAttack;
+            @HoldAttack.started += instance.OnHoldAttack;
+            @HoldAttack.performed += instance.OnHoldAttack;
+            @HoldAttack.canceled += instance.OnHoldAttack;
+            @Emote1.started += instance.OnEmote1;
+            @Emote1.performed += instance.OnEmote1;
+            @Emote1.canceled += instance.OnEmote1;
+            @Emote2.started += instance.OnEmote2;
+            @Emote2.performed += instance.OnEmote2;
+            @Emote2.canceled += instance.OnEmote2;
+            @Emote3.started += instance.OnEmote3;
+            @Emote3.performed += instance.OnEmote3;
+            @Emote3.canceled += instance.OnEmote3;
         }
 
         /// <summary>
@@ -449,6 +621,21 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Crouch.started -= instance.OnCrouch;
             @Crouch.performed -= instance.OnCrouch;
             @Crouch.canceled -= instance.OnCrouch;
+            @Attack.started -= instance.OnAttack;
+            @Attack.performed -= instance.OnAttack;
+            @Attack.canceled -= instance.OnAttack;
+            @HoldAttack.started -= instance.OnHoldAttack;
+            @HoldAttack.performed -= instance.OnHoldAttack;
+            @HoldAttack.canceled -= instance.OnHoldAttack;
+            @Emote1.started -= instance.OnEmote1;
+            @Emote1.performed -= instance.OnEmote1;
+            @Emote1.canceled -= instance.OnEmote1;
+            @Emote2.started -= instance.OnEmote2;
+            @Emote2.performed -= instance.OnEmote2;
+            @Emote2.canceled -= instance.OnEmote2;
+            @Emote3.started -= instance.OnEmote3;
+            @Emote3.performed -= instance.OnEmote3;
+            @Emote3.canceled -= instance.OnEmote3;
         }
 
         /// <summary>
@@ -517,5 +704,40 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnCrouch(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Attack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAttack(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "HoldAttack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnHoldAttack(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Emote1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnEmote1(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Emote2" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnEmote2(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Emote3" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnEmote3(InputAction.CallbackContext context);
     }
 }

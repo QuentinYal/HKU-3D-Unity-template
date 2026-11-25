@@ -23,6 +23,12 @@ public struct CharacterInput
     public bool JumpSustain;
 
     public CrouchInput Crouch;
+
+    public bool Attack;
+
+    public bool Emote1;
+    public bool Emote2;
+    public bool Emote3;
 }
 
 public struct CharacterState

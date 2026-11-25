@@ -46,28 +46,42 @@ public class ThirdPersonPlayer : MonoBehaviour
             Move = input.Move.ReadValue<Vector2>(),
             Jump = input.Jump.WasPressedThisFrame(),
             JumpSustain = input.Jump.IsPressed(),
+            Attack = input.Attack.WasPressedThisFrame(),
             Crouch = input.Crouch.WasPressedThisFrame()
                         ? CrouchInput.Toggle
-                        : CrouchInput.None
+                        : CrouchInput.None,
+
+            Emote1 = input.Emote1.WasPressedThisFrame(),
+            Emote2 = input.Emote2.WasPressedThisFrame(),
+            Emote3 = input.Emote3.WasPressedThisFrame()
         };
         playerCharacter.UpdateInput(characterInput);
 
-        bool isMoving = characterInput.Move.sqrMagnitude > 0.01f;
+        bool isWalking = characterInput.Move.sqrMagnitude > 0.001f;
+        bool isRunning = characterInput.Move.sqrMagnitude > 0.1f;
 
         var state = playerCharacter.GetState();
         bool isCrouching = state.Stance == Stance.Crouch;
 
         bool isSliding = state.Stance == Stance.Slide;
 
-        animator.SetBool("Idle", !isMoving);
+        bool isJumping = characterInput.Jump;
 
-        if (isMoving)
+        bool isAttacking = characterInput.Attack;
+
+        bool isEmoting1 = characterInput.Emote1;
+        bool isEmoting2 = characterInput.Emote2;
+        bool isEmoting3 = characterInput.Emote3;
+
+        animator.SetBool("Idle", !isWalking);
+
+        if (isWalking)
         {
             animator.SetBool("Idle", false);
             animator.SetBool("Run", true);
         }
 
-        if (!isMoving)
+        if (!isWalking)
         {
             animator.SetBool("Idle", true);
             animator.SetBool("Run", false);
@@ -80,50 +94,75 @@ public class ThirdPersonPlayer : MonoBehaviour
             animator.SetBool("CrouchIdle", true);
         }
 
-        if(isCrouching && isMoving)
+        if(isCrouching && isWalking)
         {
             animator.SetBool("CrouchIdle", false);
             animator.SetBool("CrouchWalk", true);
         }
 
-        if (!isCrouching && !isMoving)
+        if (!isCrouching && !isWalking)
         {
             animator.SetBool("CrouchIdle", false);
             animator.SetBool("CrouchWalk", false);
             animator.SetBool("Idle", true);
         }
 
-        if (isCrouching && !isMoving)
+        if (isCrouching && !isWalking)
         {
             animator.SetBool("CrouchIdle", true);
             animator.SetBool("CrouchWalk", false);
         }
 
-        if (!isCrouching && isMoving)
+        if (!isCrouching && isWalking)
         {
             animator.SetBool("Run", true);
             animator.SetBool("CrouchWalk", false);
             animator.SetBool("Slide", false);
         }
 
-        if (isSliding && isMoving)
+        if (isSliding && isWalking)
         {
             animator.SetBool("Slide", true);
             animator.SetBool("Run", false);
         }
 
-        if (!isSliding && isCrouching && !isMoving)
+        if (!isSliding && isCrouching && !isWalking)
         {
             animator.SetBool("Run",false);
             animator.SetBool("Slide", false);
             animator.SetBool("CrouchIdle", true);
         }
 
-        if (!isSliding && isCrouching && isMoving)
+        if (!isSliding && isCrouching && isWalking)
         {
             animator.SetBool("Run", false);
             animator.SetBool("Slide", false);
             animator.SetBool("CrouchWalk", true);
+        }
+
+        if (isJumping)
+        {
+            animator.SetTrigger("Jump");
+        }
+
+        if (isAttacking)
+        {
+            animator.SetTrigger("Hit");
+        }
+
+        if (isEmoting1)
+        {
+            animator.SetTrigger("Emote1");
+        }
+
+        if (isEmoting2)
+        {
+            animator.SetTrigger("Emote2");
+        }
+
+        if (isEmoting3)
+        {
+            animator.SetTrigger("Emote3");
         }
     }
 

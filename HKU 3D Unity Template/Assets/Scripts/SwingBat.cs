@@ -7,7 +7,7 @@ public class SwingBat : MonoBehaviour
 
     bool swinging;
 
-    public Transform hip; // the object the joint is connected to
+    public Transform hip; 
 
     Vector3 restLocalPos;
     Quaternion restLocalRot;
@@ -28,7 +28,7 @@ public class SwingBat : MonoBehaviour
 
         batRb.position = hip.TransformPoint(restLocalPos);
         batRb.rotation = hip.rotation * restLocalRot;
-        batRb.linearVelocity = Vector3.zero;   // batRb.velocity on older Unity versions
+        batRb.linearVelocity = Vector3.zero;   
         batRb.angularVelocity = Vector3.zero;
         batRb.WakeUp();
     }
